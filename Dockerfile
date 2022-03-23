@@ -1,8 +1,9 @@
 FROM composer:1.10
 LABEL maintainer "Innit AS"
 
+RUN apt update && apt install -y zlib1g-dev libpng-dev && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-install gd
 RUN docker-php-ext-install exif && \
-    docker-php-ext-install gd && \
     echo "jenkins:x:113:115:jenkins:/tmp/home:/bin/bash" >> /etc/passwd && \
     mkdir -p /tmp/home/.ssh && \
     echo -e "Host *\n\tStrictHostKeyChecking no\n" > /tmp/home/.ssh/config && \
