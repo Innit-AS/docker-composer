@@ -3,6 +3,7 @@ LABEL maintainer "Innit AS"
 
 RUN docker-php-ext-install exif && \
     install-php-extensions gd && \
+    docker-php-ext-install gd && \
     echo "jenkins:x:113:115:jenkins:/tmp/home:/bin/bash" >> /etc/passwd && \
     mkdir -p /tmp/home/.ssh && \
     echo -e "Host *\n\tStrictHostKeyChecking no\n" > /tmp/home/.ssh/config && \
