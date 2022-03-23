@@ -1,4 +1,4 @@
-FROM composer:1.10
+FROM composer:1.10.0
 LABEL maintainer "Innit AS"
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
