@@ -1,7 +1,7 @@
 FROM composer:1.10
 LABEL maintainer "Innit AS"
 
-RUN apt update && apt install -y zlib1g-dev libpng-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y zlib1g-dev libpng-dev
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install exif && \
     echo "jenkins:x:113:115:jenkins:/tmp/home:/bin/bash" >> /etc/passwd && \
