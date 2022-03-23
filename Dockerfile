@@ -1,4 +1,4 @@
-FROM composer
+FROM composer:1.10
 LABEL maintainer "Innit AS"
 
 RUN docker-php-ext-install exif && \
