@@ -1,8 +1,9 @@
 FROM composer:1.10
 LABEL maintainer "Innit AS"
 
-RUN apt-get update && apt-get install -y zlib1g-dev libpng-dev
-RUN docker-php-ext-install gd
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions gd
+
 RUN docker-php-ext-install exif && \
     echo "jenkins:x:113:115:jenkins:/tmp/home:/bin/bash" >> /etc/passwd && \
     mkdir -p /tmp/home/.ssh && \
